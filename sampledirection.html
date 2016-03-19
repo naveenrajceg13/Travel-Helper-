@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example: Directions + Static Map</title>
+    <script src=" http://maps.google.com/?file=api&amp;v=2&amp;key=AIzaSyB3jnKqrlQGDGtVOyruG1gDrDsLj8TcT6g"
+      type="text/javascript"></script>
+    <style type="text/css">
+      body {
+        font-family: Verdana, Arial, sans serif;
+        font-size: 11px;
+        margin: 2px;
+      }
+      table.directions th {
+        background-color:#EEEEEE;
+      }
+      img {
+        color: #000000;
+      }
+    </style>
+    <script type="text/javascript">
+ 
+    var map;
+    var gdir;
+    var geocoder = null;
+    var addressMarker;
+
+    
+    function setDirections(locale) {
+       var local=document.getElementById("local");   
+         map = new GMap2(document.getElementById("map_canvas"));
+        gdir = new GDirections(map, document.getElementById("directions"));      
+        GEvent.addListener(gdir, "error", handleErrors);
+      gdir.load("51.280548, 9.508721 to 51.725472, 9.553451",
+                { "locale": locale });
+     
+    }
+
+    function handleErrors(){
+   if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
+     alert("No corresponding geographic location could be found for one of the specified addresses. This may be due to the fact that the address is relatively new, or it may be incorrect.\nError code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
+     alert("A geocoding or directions request could not be successfully processed, yet the exact reason for the failure is not known.\n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
+     alert("The HTTP q parameter was either missing or had no value. For geocoder requests, this means that an empty address was specified as input. For directions requests, this means that no query was specified in the input.\n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_BAD_KEY)
+     alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
+     alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
+   else alert("An unknown error occurred.");
+    }
+
+    </script>
+
+  </head>
+  <body  onload="setDirections(this.locale.value); return false">
+  <form onsubmit="setDirections(this.locale.value); return false">
+   
+   
+  <input type="hidden" id="size" name="locale" value="english" />
+
+
+   
+
+    <input name="submit" type="submit" value="Get Directions!" />
+    
+  </form>
+
+   
+    <div id="directions" style="display:none;"></div>
+    <div id="map_canvas" style="width: 1400px; height: 700px"></div>
+ 
+
+
+  </body>
+</html>

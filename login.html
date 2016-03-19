@@ -1,0 +1,37 @@
+<hmtl>
+<head>
+<script type="text/javascript">
+
+
+</script>
+</head>
+<body onload="initialize()">
+
+<form action="http://localhost/login/login.php" method="post">
+<fieldset >
+<legend>Login</legend>
+<input type='hidden' name='submitted' id='submitted' value='1'/>
+<label for='username' >UserName:</label>
+<input type='text' name='username' id='username'  maxlength="50" />
+<label for='password' >Password:</label>
+<input type='password' name='password' id='password' maxlength="50" />
+<input type='submit' name='Submit' value='Submit' />
+</fieldset>
+</form>
+<form id='login' action='http://localhost/login/register.php' method='post' accept-charset='UTF-8'>
+<fieldset>
+<legend>register</legend>
+<label for='user' >UserName:</label>
+<input type='text' name='user' id='user'  maxlength="50" />
+<label for='pass' >Password:</label>
+<input type='password' name='pass' id='pass' maxlength="50" />
+<label for='Email' >Email id:</label>
+<input type='text' name='email' id='email'  maxlength="50" />
+<label for='phoneno' >phone number:</label>
+<input type='text' name='phoneno' id='phoneno'  maxlength="50" />
+<input type='submit' name='Submit' value='Submit' />
+</fieldset>
+<br/>
+<br/>
+</body>
+</html>
